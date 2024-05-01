@@ -1,4 +1,6 @@
 using FitnessStudioBackend.Data;
+using FitnessStudioBackend.Interfaces;
+using FitnessStudioBackend.Repository;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -14,6 +16,8 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddDbContext<ApplicationDBContext>(options => {
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
 });
+
+builder.Services.AddScoped<IExerciseRepository,ExerciseRepository>();
 
 var app = builder.Build();
 
