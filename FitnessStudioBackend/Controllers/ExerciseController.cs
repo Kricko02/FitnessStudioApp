@@ -11,12 +11,14 @@ namespace FitnessStudioBackend.Controllers
     [ApiController]
     public class ExerciseController : Controller
     {
-        private readonly ApplicationDBContext _context;
+       
         private readonly IExerciseRepository _exerciseRepo;
-        public ExerciseController(ApplicationDBContext context,IExerciseRepository exerciseRepo)
+        private readonly IExerciseGroupRepository _exerciseGroupRepo;
+        public ExerciseController(IExerciseRepository exerciseRepo, IExerciseGroupRepository exerciseGroupRepo)
         {
             _exerciseRepo= exerciseRepo;
-            _context = context;
+            _exerciseGroupRepo= exerciseGroupRepo;
+           
         }
 
         [HttpGet]
@@ -53,10 +55,14 @@ namespace FitnessStudioBackend.Controllers
             return Ok(exerciseDto);
         }
 
-        [HttpPost]
-        public async Task<IActionResult> Create([FromBody] RequestExerciseDto exerciseDto)
+        [HttpPost("{exerciseGroupId}")]
+        public async Task<IActionResult> Create([FromRoute] int exerciseGroupId,RequestExerciseDto exerciseDto)
         {
-            var exerciseModel = exerciseDto.ToExerciseFromRequestDto();
+            if(!await _exerciseGroupRepo.ExerciseGroupExists(exerciseGroupId))
+            {
+                return BadRequest("Exercise group does not exist");
+            }
+            var exerciseModel = exerciseDto.ToExerciseFromRequestDto(exerciseGroupId);
             await _exerciseRepo.CreateAsync(exerciseModel);
             return CreatedAtAction(nameof(GetById), new {id=exerciseModel.Id},exerciseModel.ToExerciseDto()); //Will change the response later right now for test purposes
         }

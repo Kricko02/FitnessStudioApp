@@ -15,12 +15,12 @@ namespace FitnessStudioBackend.Mappers
             };
         }
         
-        public static Exercise ToExerciseFromRequestDto(this RequestExerciseDto exerciseDto)
+        public static Exercise ToExerciseFromRequestDto(this RequestExerciseDto exerciseDto,int exericseGroupId)
         {
             return new Exercise 
             {
                 Name = exerciseDto.Name,
-                ExerciseGroupId= exerciseDto.ExerciseGroupId,
+                ExerciseGroupId= exericseGroupId
             };
         }
     }
