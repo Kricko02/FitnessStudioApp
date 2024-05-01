@@ -29,7 +29,7 @@ namespace FitnessStudioBackend.Controllers
             return Ok(exerciseDto); 
         }
 
-        [HttpGet("{id}")]
+        [HttpGet("{id:int}")]
         public async Task<IActionResult> GetById([FromRoute] int id)
         {
             var exercise = await _exerciseRepo.GetByIdAsync(id);
@@ -41,7 +41,7 @@ namespace FitnessStudioBackend.Controllers
             return Ok(exercise.ToExerciseDto());
         }
 
-        [HttpGet("group/{groupId}")]
+        [HttpGet("group/{groupId:int}")]
         public async Task<IActionResult> GetExerciseByGroup([FromRoute] int groupId)
         {
             var exercises = await _exerciseRepo.GetByGroupIdAsync(groupId);
@@ -55,9 +55,13 @@ namespace FitnessStudioBackend.Controllers
             return Ok(exerciseDto);
         }
 
-        [HttpPost("{exerciseGroupId}")]
+        [HttpPost("{exerciseGroupId:int}")]
         public async Task<IActionResult> Create([FromRoute] int exerciseGroupId,RequestExerciseDto exerciseDto)
         {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
             if(!await _exerciseGroupRepo.ExerciseGroupExists(exerciseGroupId))
             {
                 return BadRequest("Exercise group does not exist");
