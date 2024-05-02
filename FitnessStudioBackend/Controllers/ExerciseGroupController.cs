@@ -1,5 +1,6 @@
 ﻿using FitnessStudioBackend.Interfaces;
 using FitnessStudioBackend.Mappers;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace FitnessStudioBackend.Controllers
@@ -15,6 +16,7 @@ namespace FitnessStudioBackend.Controllers
         }
 
         [HttpGet]
+        [Authorize]
         public async Task<IActionResult> GetAll()
         {
             var exercise = await _exerciseGroupRepo.GetAllAsync();
