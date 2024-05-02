@@ -23,5 +23,14 @@ namespace FitnessStudioBackend.Mappers
                 ExerciseGroupId= exericseGroupId
             };
         }
+
+        public static ExerciseDto ToExerciseName(this Exercise exerciseModel)
+        {
+            return new ExerciseDto
+            {
+                Name = exerciseModel.Name,
+              
+            };
+        }
     }
 }

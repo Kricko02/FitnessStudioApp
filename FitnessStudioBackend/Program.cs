@@ -91,6 +91,7 @@ builder.Services.AddAuthentication(options => {
 builder.Services.AddScoped<IExerciseRepository,ExerciseRepository>();
 builder.Services.AddScoped<IExerciseGroupRepository, ExerciseGroupRepository>();
 builder.Services.AddScoped<ITokenService, TokenService>();
+builder.Services.AddScoped<IWorkoutRepository, WorkoutRepository>();
 
 var app = builder.Build();
 

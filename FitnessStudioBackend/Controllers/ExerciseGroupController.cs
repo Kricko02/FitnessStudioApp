@@ -16,7 +16,6 @@ namespace FitnessStudioBackend.Controllers
         }
 
         [HttpGet]
-        [Authorize]
         public async Task<IActionResult> GetAll()
         {
             var exercise = await _exerciseGroupRepo.GetAllAsync();
