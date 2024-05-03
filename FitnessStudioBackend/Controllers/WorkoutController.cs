@@ -1,4 +1,5 @@
-﻿using FitnessStudioBackend.Interfaces;
+﻿using FitnessStudioBackend.Dtos.Workout;
+using FitnessStudioBackend.Interfaces;
 using FitnessStudioBackend.Mappers;
 using Microsoft.AspNetCore.Mvc;
 
@@ -20,6 +21,18 @@ namespace FitnessStudioBackend.Controllers
             var workout = await _workoutRepository.GetAllAsync();
             var workoutDto = workout.Select(s => s.ToWorkoutDto());
             return Ok(workoutDto);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Create([FromBody] NewWorkoutDto workoutDto)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+            var workoutModel = workoutDto.ToWorkoutFromNewWorkoutDto();
+            await _workoutRepository.CreateAsync(workoutModel);
+            return Ok("Workout created succesfully");
         }
     }
 }
