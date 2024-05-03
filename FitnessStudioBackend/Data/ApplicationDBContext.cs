@@ -15,26 +15,11 @@ namespace FitnessStudioBackend.Data
 
         public DbSet<Exercise> Exercise { get; set; }
         public DbSet<ExerciseGroup> ExerciseGroup { get; set; }
+        public DbSet<Workout> Workout { get; set; }
+        public DbSet<WorkoutExercise> WorkoutExercises { get; set; }
+        public DbSet<ExerciseSet> ExerciseSets { get; set; }
 
-        protected override void OnModelCreating(ModelBuilder builder)
-        {
-            base.OnModelCreating(builder);
-
-            List<IdentityRole> roles = new List<IdentityRole>
-            {
-                new IdentityRole
-                {
-                    Name="Admin",
-                    NormalizedName="ADMIN"
-                },
-                new IdentityRole
-                {
-                    Name="User",
-                    NormalizedName="USER"
-                }
-            };
-            builder.Entity<IdentityRole>().HasData(roles);
-        }
+        
 
     }
 }
