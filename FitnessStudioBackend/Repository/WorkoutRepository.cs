@@ -16,5 +16,12 @@ namespace FitnessStudioBackend.Repository
         {
             return await _context.Workout.Include(w => w.Exercises).ThenInclude(we => we.Exercise).Include(w => w.Exercises).ThenInclude(we => we.Sets).ToListAsync();
         }
+
+        public async Task<Workout> CreateAsync(Workout exerciseModel)
+        {
+            await _context.Workout.AddAsync(exerciseModel);
+            await _context.SaveChangesAsync();
+            return exerciseModel;
+        }
     }
 }
