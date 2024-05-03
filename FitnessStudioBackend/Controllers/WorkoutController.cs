@@ -1,7 +1,9 @@
 ﻿using FitnessStudioBackend.Dtos.Workout;
 using FitnessStudioBackend.Interfaces;
 using FitnessStudioBackend.Mappers;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System.Security.Claims;
 
 namespace FitnessStudioBackend.Controllers
 {
@@ -22,15 +24,21 @@ namespace FitnessStudioBackend.Controllers
             var workoutDto = workout.Select(s => s.ToWorkoutDto());
             return Ok(workoutDto);
         }
-
+       
         [HttpPost]
+        [Authorize]
         public async Task<IActionResult> Create([FromBody] NewWorkoutDto workoutDto)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
-            var workoutModel = workoutDto.ToWorkoutFromNewWorkoutDto();
+            string userId = HttpContext.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+            if (string.IsNullOrEmpty(userId))
+            {
+                return Unauthorized();
+            }
+            var workoutModel = workoutDto.ToWorkoutFromNewWorkoutDto(userId);
             await _workoutRepository.CreateAsync(workoutModel);
             return Ok("Workout created succesfully");
         }
