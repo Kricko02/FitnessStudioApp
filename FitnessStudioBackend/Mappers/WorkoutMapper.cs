@@ -16,12 +16,12 @@ namespace FitnessStudioBackend.Mappers
             };
         }
 
-        public static Workout ToWorkoutFromNewWorkoutDto(this NewWorkoutDto newWorkoutDto)
+        public static Workout ToWorkoutFromNewWorkoutDto(this NewWorkoutDto newWorkoutDto, string userId)
         {
             return new Workout
             {
                 Name = newWorkoutDto.Name,
-                UserId = newWorkoutDto.UserId,
+                UserId = userId,
                 Exercises = newWorkoutDto.Exercises.Select(exerciseDto => new WorkoutExercise
                 {
                     ExerciseId = exerciseDto.ExerciseId,
