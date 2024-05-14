@@ -9,6 +9,7 @@ namespace FitnessStudioBackend.Mappers
         {
             return new SetsDto
             {
+                Id = exerciseSetModel.Id,
                 Reps = exerciseSetModel.Reps,
                 Weight = exerciseSetModel.Weight,
             };
