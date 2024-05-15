@@ -61,11 +61,18 @@
 	</ItemGroup>
 
 	<ItemGroup>
+		<PackageReference Include="IconPacks.Material" Version="1.0.8732.5-build" />
 		<PackageReference Include="IconPacks.MaterialCommunity" Version="1.0.8898.1-build" />
 		<PackageReference Include="Material.Components.Maui" Version="0.2.2-preview" />
 		<PackageReference Include="Microsoft.Maui.Controls" Version="$(MauiVersion)" />
 		<PackageReference Include="Microsoft.Maui.Controls.Compatibility" Version="$(MauiVersion)" />
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="8.0.0" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <MauiXaml Update="Resources\Icons\Icons.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	</ItemGroup>
 
 </Project>
