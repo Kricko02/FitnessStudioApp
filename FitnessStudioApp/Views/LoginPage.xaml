@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:mdc="clr-namespace:Material.Components.Maui;assembly=Material.Components.Maui"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             x:Class="FitnessStudioApp.LoginPage" Title=""
+             >
+
+    <VerticalStackLayout VerticalOptions="CenterAndExpand" >
+        <Image Source="login_photo.png" WidthRequest="200" Aspect="AspectFit"></Image>
+        <Label FontSize="40" FontAttributes="Bold" HorizontalOptions="Center">FIT STUDIO</Label>
+        <mdc:TextField Style="{DynamicResource OutlinedTextFieldStyle}" WidthRequest="250" LabelText="Username" SupportingText="" InputType="SingleLine" BackgroundColor="Transparent"/>
+        <mdc:TextField Style="{DynamicResource OutlinedTextFieldStyle}" WidthRequest="250" LabelText="Password" InputType="Password" Margin="10,0,0,0" SupportingText="" BackgroundColor="Transparent" />
+        <mdc:Button Style="{StaticResource TextButtonStyle}" Text="Forgot password?" FontWeight="Semibold" HorizontalOptions="End" Margin="0,0,30,0"  FontColor="Orange"/>
+        <mdc:Button Style="{DynamicResource FilledButtonStyle}" WidthRequest="250" HeightRequest="50" FontSize="20" Text="Sign in" Margin="10" FontColor="White" BackgroundColor="Orange"/>
+        <mdc:Button Style="{StaticResource TextButtonStyle}" Text="Create acount" FontWeight="Bold" FontColor="Orange"/>
+    </VerticalStackLayout>
+</ContentPage> 

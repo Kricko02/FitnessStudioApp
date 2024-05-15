@@ -57,6 +57,11 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <None Remove="Resources\Fonts\MaterialIcons-Regular.ttf" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="IconPacks.MaterialCommunity" Version="1.0.8898.1-build" />
 		<PackageReference Include="Material.Components.Maui" Version="0.2.2-preview" />
 		<PackageReference Include="Microsoft.Maui.Controls" Version="$(MauiVersion)" />
 		<PackageReference Include="Microsoft.Maui.Controls.Compatibility" Version="$(MauiVersion)" />
