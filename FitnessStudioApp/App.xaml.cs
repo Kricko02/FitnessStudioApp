@@ -11,8 +11,7 @@ namespace FitnessStudioApp
             bool prijavljen=true;
             if(prijavljen )
             {
-
-            MainPage = new AppShell();
+                 MainPage = new AppShell();
             }
             else
             {

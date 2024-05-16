@@ -5,10 +5,14 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:mdc="clr-namespace:Material.Components.Maui;assembly=Material.Components.Maui"
     xmlns:icon="clr-namespace:IconPacks.IconKind;assembly=IconPacks.Material"
-    xmlns:local="clr-namespace:FitnessStudioApp.Views"    
+    xmlns:local="clr-namespace:FitnessStudioApp.Views"   
+    Shell.BackgroundColor="Black"
+    Shell.TabBarBackgroundColor="Black"
+       Shell.TabBarTitleColor="Orange"
+       Shell.TabBarUnselectedColor="White"
+    Shell.TabBarForegroundColor="Orange"
     Shell.FlyoutBehavior="Disabled">
-
-    <TabBar>
+    <TabBar >
         <Tab Title="Workouts" Icon="workouts.png">
             <ShellContent Route="WorkoutPage" >
                 <ShellContent.ContentTemplate>
@@ -18,7 +22,7 @@
                 </ShellContent.ContentTemplate>
             </ShellContent>
         </Tab>
-        <Tab Title="" Icon="workouts.png">
+        <Tab Title="Social" Icon="circle_white.png">
             <ShellContent Route="WorkoutPage">
                 <ShellContent.ContentTemplate>
                     <DataTemplate>
@@ -27,7 +31,7 @@
                 </ShellContent.ContentTemplate>
             </ShellContent>
         </Tab>
-        <Tab Title="Profile" Icon="workouts.png">
+        <Tab Title="Profile" Icon="profile_white.png">
             <ShellContent Route="WorkoutPage">
                 <ShellContent.ContentTemplate>
                     <DataTemplate>
