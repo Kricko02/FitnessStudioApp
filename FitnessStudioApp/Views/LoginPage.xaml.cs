@@ -1,7 +1,6 @@
 
-using FitnessStudioApp.Views;
 
-namespace FitnessStudioApp;
+namespace FitnessStudioApp.Views;
 
 public partial class LoginPage : ContentPage
 {

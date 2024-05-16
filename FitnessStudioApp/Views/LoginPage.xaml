@@ -3,7 +3,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:mdc="clr-namespace:Material.Components.Maui;assembly=Material.Components.Maui"
              xmlns:icon="clr-namespace:IconPacks.IconKind;assembly=IconPacks.Material"
-             x:Class="FitnessStudioApp.LoginPage" Title=""
+            xmlns:local="clr-namespace:FitnessStudioApp.Views"    
+             x:Class="FitnessStudioApp.Views.LoginPage" Title=""
              >
     
     <VerticalStackLayout VerticalOptions="CenterAndExpand" >
