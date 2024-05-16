@@ -1,4 +1,6 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using Material.Components.Maui.Extensions;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
 
 namespace FitnessStudioApp
 {
@@ -12,11 +14,16 @@ namespace FitnessStudioApp
                 .ConfigureFonts(fonts =>
                 {
                     fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
+                    fonts.AddFont("MaterialIcons-Regular.ttf", "IconsFont");
                     fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
-                });
+                })
+                .UseMaterialComponents();
+
+            builder.Services.AddTransient<LoginPage>();
+
 
 #if DEBUG
-    		builder.Logging.AddDebug();
+            builder.Logging.AddDebug();
 #endif
 
             return builder.Build();
