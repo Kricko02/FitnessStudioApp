@@ -33,5 +33,24 @@ namespace FitnessStudioBackend.Mappers
                 }).ToList()
             };
         }
+
+        public static Workout ToWorkoutFromUpdate(this UpdateWorkoutDto updateWorkoutDto)
+        {
+            return new Workout
+            {
+                Name = updateWorkoutDto.Name,
+                Exercises = updateWorkoutDto.Exercises.Select(exerciseDto => new WorkoutExercise
+                {
+                    WorkoutExerciseId = exerciseDto.WorkoutExerciseId,
+                    ExerciseId = exerciseDto.ExerciseId,
+                    Sets = exerciseDto.Sets?.Select(setDto => new ExerciseSet
+                    {
+                        Id=setDto.Id,
+                        Reps = setDto.Reps,
+                        Weight = setDto.Weight
+                    }).ToList()
+                }).ToList()
+            };
+        }
     }
 }
