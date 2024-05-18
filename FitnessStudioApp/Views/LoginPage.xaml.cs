@@ -1,5 +1,8 @@
 
 
+using FitnessStudioApp.Services;
+using FitnessStudioApp.ViewModels;
+
 namespace FitnessStudioApp.Views;
 
 public partial class LoginPage : ContentPage
@@ -7,6 +10,16 @@ public partial class LoginPage : ContentPage
     public LoginPage()
     {
         InitializeComponent();
+        BindingContext = ResolveViewModel();
+    }
+
+    private LoginViewModel ResolveViewModel()
+    {
+        // Retrieve the service provider
+        var serviceProvider = MauiProgram.Services;
+        // Resolve the LoginViewModel
+        var loginViewModel = serviceProvider.GetService<LoginViewModel>();
+        return loginViewModel;
     }
 
     private void tb_password_TrailingIconClicked(object sender, EventArgs e)
@@ -23,22 +36,22 @@ public partial class LoginPage : ContentPage
         }
     }
 
-    private void bt_SignIn_Clicked(object sender, TouchEventArgs e)
-    {
-        if (CheckTextBoxes())
-        {
-            if (CheckUser())
-            {
-                //prejmeš žeton in prijaviš uporabnika
-            }
-            else 
-            { 
-                ResetMessages();
-                tb_password.Text = "";
-                tb_password.SupportingText = "Enter password is incorect!";
-            }
-        }
-    }
+    //private void bt_SignIn_Clicked(object sender, TouchEventArgs e)
+    //{
+    //    if (CheckTextBoxes())
+    //    {
+    //        if (CheckUser())
+    //        {
+    //            //prejmeš žeton in prijaviš uporabnika
+    //        }
+    //        else
+    //        {
+    //            ResetMessages();
+    //            tb_password.Text = "";
+    //            tb_password.SupportingText = "Enter password is incorect!";
+    //        }
+    //    }
+    //}
     private void bt_register_Clicked(object sender, TouchEventArgs e)
     {
         Navigation.PopModalAsync();
