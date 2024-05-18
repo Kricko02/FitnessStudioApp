@@ -26,7 +26,8 @@ public static class MauiProgram
             .UseMaterialComponents();
 
         builder.Services.AddTransient<WorkoutsPage>();
-        builder.Services.AddTransient<LoginPage>();
+        builder.Services.AddSingleton<LoginPage>();
+        builder.Services.AddSingleton<LoginViewModel>();
         builder.Services.AddTransient<RegisterPage>();
         builder.Services.AddTransient<ProfilePage>();
 

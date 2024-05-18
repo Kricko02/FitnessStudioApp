@@ -13,5 +13,6 @@ namespace FitnessStudioApp.Services
     {
         [Post("/api/account/login")]
         Task<LoginResponse> Login([Body] LoginRequest loginRequest);
+
     }
 }

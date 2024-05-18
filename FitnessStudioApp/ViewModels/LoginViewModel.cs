@@ -1,6 +1,9 @@
-﻿using FitnessStudioApp.Models.Login;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
+using FitnessStudioApp.Models.Login;
 using FitnessStudioApp.Services;
 using FitnessStudioApp.Views;
+using System.Windows.Input;
 using Refit;
 using System;
 using System.Collections.Generic;
@@ -9,42 +12,41 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
-using System.Windows.Input;
 
 namespace FitnessStudioApp.ViewModels
 {
-    public class LoginViewModel : INotifyPropertyChanged
+    public partial class LoginViewModel :ObservableObject, INotifyPropertyChanged
     {
         private readonly IApiService _apiService;
-        private string _username;
-        private string _password;
-        private bool _isBusy;
+
+        public bool IsBusy = false;
         private string _token;
 
 
-        public string Username
-        {
-            get => _username;
-            set { _username = value; OnPropertyChanged(); }
-        }
+        //public string Username
+        //{
+        //    get => _username;
+        //    set { _username = value; OnPropertyChanged(); }
+        //}
 
-        public string Password
-        {
-            get => _password;
-            set { _password = value; OnPropertyChanged(); }
-        }
+        //public string Password
+        //{
+        //    get => _password;
+        //    set { _password = value; OnPropertyChanged(); }
+        //}
 
-        public bool IsBusy
-        {
-            get => _isBusy;
-            set { _isBusy = value; OnPropertyChanged(); }
-        }
-
+      
         public string Token
         {
             get => _token;
             private set { _token = value; OnPropertyChanged(); }
         }
+
+        [ObservableProperty]
+        string username;
+
+        [ObservableProperty]
+        string password;
 
         public ICommand LoginCommand { get; }
 
@@ -54,8 +56,15 @@ namespace FitnessStudioApp.ViewModels
             LoginCommand = new Command(async () => await Login(), () => !IsBusy);
         }
 
-        private async Task Login()
+        public LoginViewModel()
         {
+        }
+
+       
+        async Task Login()
+        {
+             Console.WriteLine(username + ", " + password);
+
             if (IsBusy) return;
 
             IsBusy = true;
@@ -65,14 +74,12 @@ namespace FitnessStudioApp.ViewModels
                 var response = await _apiService.Login(loginRequest);
                 Token = response.Token;
                 await SecureStorage.SetAsync("jwt_token", Token);
-
                 Application.Current.MainPage = new AppShell();
             }
             catch (Exception ex)
             {
-                
                 await Application.Current.MainPage.DisplayAlert("Error", ex.Message.ToString(), "OK");
-              
+
             }
             finally
             {
@@ -80,7 +87,7 @@ namespace FitnessStudioApp.ViewModels
             }
         }
 
-   
+
         public event PropertyChangedEventHandler PropertyChanged;
 
         public void OnPropertyChanged([CallerMemberName] string propertyName = null)

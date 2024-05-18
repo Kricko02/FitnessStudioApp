@@ -12,8 +12,10 @@
     <VerticalStackLayout VerticalOptions="CenterAndExpand" >
         <Image Source="login_photo.png" WidthRequest="200" Aspect="AspectFit"></Image>
         <Label FontSize="40" FontAttributes="Bold" HorizontalOptions="Center">FIT STUDIO</Label>
-        <mdc:TextField x:Name="tb_username" Text="{Binding Username}" Style="{DynamicResource OutlinedTextFieldStyle}" WidthRequest="250" LabelText="Username" SupportingText="" InputType="SingleLine" SupportingFontColor="Red" BackgroundColor="Transparent" />
-        <mdc:TextField x:Name="tb_password" Text="{Binding Password}" TrailingIconClicked="tb_password_TrailingIconClicked" Style="{DynamicResource OutlinedTextFieldStyle}" WidthRequest="250" LabelText="Password" InputType="Password" SupportingFontColor="Red" Margin="10,0,0,0" SupportingText="" BackgroundColor="Transparent" TrailingIconData="{Static icon:Material.VisibilityOff}"/>
+        <!--<mdc:TextField x:Name="tb_username" Text="{Binding Username}" Style="{DynamicResource OutlinedTextFieldStyle}" WidthRequest="250" LabelText="Username" SupportingText="" InputType="SingleLine" SupportingFontColor="Red" BackgroundColor="Transparent" />-->
+        <Entry Placeholder="Username" Text="{Binding Username}" WidthRequest="250" x:Name="tb_username" ></Entry>
+        <Entry Placeholder="Password" Text="{Binding Password}" IsPassword="True" WidthRequest="250" x:Name="tb_password"></Entry>
+        <!--<mdc:TextField x:Name="tb_password" Text="{Binding Password}" TrailingIconClicked="tb_password_TrailingIconClicked" Style="{DynamicResource OutlinedTextFieldStyle}" WidthRequest="250" LabelText="Password" InputType="Password" SupportingFontColor="Red" Margin="10,0,0,0" SupportingText="" BackgroundColor="Transparent" TrailingIconData="{Static icon:Material.VisibilityOff}"/>-->
         <mdc:Button x:Name="bt_ForgotPassword" Style="{StaticResource TextButtonStyle}" Text="Forgot password?" FontWeight="Semibold" HorizontalOptions="End" Margin="0,0,30,0"  FontColor="Orange"/>
         <mdc:Button x:Name="bt_SignIn" Command="{Binding LoginCommand}" Style="{DynamicResource FilledButtonStyle}" WidthRequest="250" HeightRequest="50" FontSize="20" Text="Sign in" Margin="10" FontColor="White" BackgroundColor="Orange"/>
         <mdc:Button Style="{StaticResource TextButtonStyle}" x:Name="bt_register" Clicked="bt_register_Clicked" Text="Create acount" FontWeight="Bold" FontColor="Orange"/>

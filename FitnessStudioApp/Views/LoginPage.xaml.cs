@@ -1,5 +1,3 @@
-
-
 using FitnessStudioApp.Services;
 using FitnessStudioApp.ViewModels;
 
@@ -24,16 +22,16 @@ public partial class LoginPage : ContentPage
 
     private void tb_password_TrailingIconClicked(object sender, EventArgs e)
     {
-        if (tb_password.TrailingIconData == IconPacks.IconKind.Material.VisibilityOff)
-        {
-            tb_password.InputType = Material.Components.Maui.Primitives.InputType.SingleLine;
-            tb_password.TrailingIconData = IconPacks.IconKind.Material.Visibility;
-        }
-        else
-        {
-            tb_password.InputType = Material.Components.Maui.Primitives.InputType.Password;
-            tb_password.TrailingIconData = IconPacks.IconKind.Material.VisibilityOff;
-        }
+        //if (tb_password.TrailingIconData == IconPacks.IconKind.Material.VisibilityOff)
+        //{
+        //    tb_password.InputType = Material.Components.Maui.Primitives.InputType.SingleLine;
+        //    tb_password.TrailingIconData = IconPacks.IconKind.Material.Visibility;
+        //}
+        //else
+        //{
+        //    tb_password.InputType = Material.Components.Maui.Primitives.InputType.Password;
+        //    tb_password.TrailingIconData = IconPacks.IconKind.Material.VisibilityOff;
+        //}
     }
 
     //private void bt_SignIn_Clicked(object sender, TouchEventArgs e)
@@ -63,20 +61,20 @@ public partial class LoginPage : ContentPage
     }
     private void ResetMessages()
     {
-        tb_password.SupportingText = "";
-        tb_username.SupportingText = "";
+        //tb_password.SupportingText = "";
+        //tb_username.SupportingText = "";
     }
     private bool CheckTextBoxes()
     {
         ResetMessages();
         if (tb_username.Text.Length == 0)
         {
-            tb_username.SupportingText = "Enter username!";
+            //tb_username.SupportingText = "Enter username!";
             return false;
         }
         if (tb_password.Text.Length == 0)
         {
-            tb_password.SupportingText = "Enter password!";
+            //tb_password.SupportingText = "Enter password!";
             return false;
         }
         return true;
