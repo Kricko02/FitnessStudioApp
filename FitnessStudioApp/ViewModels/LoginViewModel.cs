@@ -70,10 +70,11 @@ namespace FitnessStudioApp.ViewModels
             IsBusy = true;
             try
             {
-                var loginRequest = new LoginRequest { userName = "tilen", password = "P@ssword_0161" };// tu je hardcoded moglo bi bit Username in Passowrd namesto tilen in ....
+                var loginRequest = new LoginRequest { userName = username, password = password };
                 var response = await _apiService.Login(loginRequest);
                 Token = response.Token;
                 await SecureStorage.SetAsync("jwt_token", Token);
+                await SecureStorage.SetAsync("username", response.Username);
                 Application.Current.MainPage = new AppShell();
             }
             catch (Exception ex)
