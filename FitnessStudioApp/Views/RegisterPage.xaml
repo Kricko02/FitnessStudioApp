@@ -4,16 +4,21 @@
              xmlns:mdc="clr-namespace:Material.Components.Maui;assembly=Material.Components.Maui"
              xmlns:icon="clr-namespace:IconPacks.IconKind;assembly=IconPacks.Material"
              x:Class="FitnessStudioApp.Views.RegisterPage"
+             xmlns:viewmodel="clr-namespace:FitnessStudioApp.ViewModels"
+             x:DataType="viewmodel:RegisterViewModel"
              Title="">
     
     <VerticalStackLayout VerticalOptions="CenterAndExpand" >
         <Image Source="login_photo.png" WidthRequest="200" Aspect="AspectFit"></Image>
         <Label FontSize="30" FontAttributes="Bold" HorizontalOptions="Center">Registration</Label>
-        <mdc:TextField x:Name="tb_username" Style="{DynamicResource OutlinedTextFieldStyle}" WidthRequest="250" LabelText="Username" SupportingText="" InputType="SingleLine" SupportingFontColor="Red" BackgroundColor="Transparent" />
+        <Entry Placeholder="Username" Text="{Binding Username}" WidthRequest="250" x:Name="tb_username" ></Entry>
+        <Entry Placeholder="Email" Text="{Binding EmailAddress}" WidthRequest="250" x:Name="tb_email" ></Entry>
+        <Entry Placeholder="Password" Text="{Binding Password}" IsPassword="True" WidthRequest="250" x:Name="tb_password"></Entry>
+        <!--<mdc:TextField x:Name="tb_username" Style="{DynamicResource OutlinedTextFieldStyle}" WidthRequest="250" LabelText="Username" SupportingText="" InputType="SingleLine" SupportingFontColor="Red" BackgroundColor="Transparent" />
         <mdc:TextField x:Name="tb_email" Style="{DynamicResource OutlinedTextFieldStyle}" WidthRequest="250" LabelText="Email" SupportingText="" InputType="SingleLine" SupportingFontColor="Red" BackgroundColor="Transparent" />
-        <mdc:TextField x:Name="tb_password" TrailingIconClicked="tb_password_TrailingIconClicked" Style="{DynamicResource OutlinedTextFieldStyle}" WidthRequest="250" LabelText="Password" InputType="Password" SupportingFontColor="Red" Margin="10,0,0,0" SupportingText="" BackgroundColor="Transparent" TrailingIconData="{Static icon:Material.VisibilityOff}"/>
-        <mdc:TextField x:Name="tb_passwordRepeat" TrailingIconClicked="tb_passwordRepeat_TrailingIconClicked" Style="{DynamicResource OutlinedTextFieldStyle}" WidthRequest="250" LabelText="Password" InputType="Password" SupportingFontColor="Red" Margin="10,0,0,0" SupportingText="" BackgroundColor="Transparent" TrailingIconData="{Static icon:Material.VisibilityOff}"/>
-        <mdc:Button x:Name="bt_register" Clicked="bt_register_Clicked" Style="{DynamicResource FilledButtonStyle}" WidthRequest="250" HeightRequest="50" FontSize="20" Text="Register" Margin="10" FontColor="White" BackgroundColor="Orange"/>
+        <mdc:TextField x:Name="tb_password" TrailingIconClicked="tb_password_TrailingIconClicked" Style="{DynamicResource OutlinedTextFieldStyle}" WidthRequest="250" LabelText="Password" InputType="Password" SupportingFontColor="Red" Margin="10,0,0,0" SupportingText="" BackgroundColor="Transparent" TrailingIconData="{Static icon:Material.VisibilityOff}"/>-->
+        <!--<mdc:TextField x:Name="tb_passwordRepeat" TrailingIconClicked="tb_passwordRepeat_TrailingIconClicked" Style="{DynamicResource OutlinedTextFieldStyle}" WidthRequest="250" LabelText="Password" InputType="Password" SupportingFontColor="Red" Margin="10,0,0,0" SupportingText="" BackgroundColor="Transparent" TrailingIconData="{Static icon:Material.VisibilityOff}"/>-->
+        <mdc:Button x:Name="bt_Register" Command="{Binding RegisterCommand}" Style="{DynamicResource FilledButtonStyle}" WidthRequest="250" HeightRequest="50" FontSize="20" Text="Sign in" Margin="10" FontColor="White" BackgroundColor="Orange"/>
         <mdc:Button Style="{StaticResource TextButtonStyle}" Text="Sign in" x:Name="bt_signIn" Clicked="bt_signIn_Clicked"  FontWeight="Bold" FontColor="Orange"/>
     </VerticalStackLayout>
 </ContentPage>

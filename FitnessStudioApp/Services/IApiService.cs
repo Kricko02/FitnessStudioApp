@@ -1,4 +1,5 @@
 ﻿using FitnessStudioApp.Models.Login;
+using FitnessStudioApp.Models.Register;
 using Refit;
 using System;
 using System.Collections.Generic;
@@ -13,6 +14,9 @@ namespace FitnessStudioApp.Services
     {
         [Post("/api/account/login")]
         Task<LoginResponse> Login([Body] LoginRequest loginRequest);
+
+        [Post("/api/account/register")]
+        Task<LoginResponse> Register([Body] RegisterRequest registerRequest);
 
     }
 }

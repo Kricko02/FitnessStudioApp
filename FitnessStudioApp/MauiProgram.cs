@@ -30,8 +30,11 @@ public static class MauiProgram
         builder.Services.AddSingleton<LoginViewModel>();
         builder.Services.AddTransient<RegisterPage>();
         builder.Services.AddTransient<ProfilePage>();
+        builder.Services.AddSingleton<ProfileViewModel>();
+        builder.Services.AddSingleton<RegisterViewModel>();
 
         builder.Services.AddTransient<LoginViewModel>();
+       
 
         builder.Services.AddRefitClient<IApiService>()
                  .ConfigureHttpClient(client =>

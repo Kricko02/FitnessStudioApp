@@ -22,20 +22,6 @@ namespace FitnessStudioApp.ViewModels
         public bool IsBusy = false;
         private string _token;
 
-
-        //public string Username
-        //{
-        //    get => _username;
-        //    set { _username = value; OnPropertyChanged(); }
-        //}
-
-        //public string Password
-        //{
-        //    get => _password;
-        //    set { _password = value; OnPropertyChanged(); }
-        //}
-
-      
         public string Token
         {
             get => _token;
@@ -79,7 +65,7 @@ namespace FitnessStudioApp.ViewModels
             }
             catch (Exception ex)
             {
-                await Application.Current.MainPage.DisplayAlert("Error", ex.Message.ToString(), "OK");
+                await Application.Current.MainPage.DisplayAlert("Invalid credentials", "Please check your username and password and try again.", "OK");
 
             }
             finally
