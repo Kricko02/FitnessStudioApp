@@ -8,14 +8,14 @@ namespace FitnessStudioApp
         {
             InitializeComponent();
             //Dodaj logiko za prijavo ali AppShell kjer je aplikacija ko je user prijavlen
-            bool prijavljen=true;
+            bool prijavljen=false;
             if(prijavljen )
             {
                  MainPage = new AppShell();
             }
             else
             {
-
+                MainPage = new LoginPage();
             }
 
         }
