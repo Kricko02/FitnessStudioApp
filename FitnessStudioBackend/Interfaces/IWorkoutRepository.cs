@@ -8,5 +8,7 @@ namespace FitnessStudioBackend.Interfaces
         Task<Workout> CreateAsync(Workout exerciseModel);
 
         Task<Workout?> UpdateAsync(int id,Workout workout,string userId);
+
+        Task<List<Workout>> GetUserWorkouts(string userId);
     }
 }

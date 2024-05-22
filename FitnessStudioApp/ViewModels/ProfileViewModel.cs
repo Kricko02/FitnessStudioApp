@@ -1,6 +1,9 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
+using FitnessStudioApp.Models.Workout;
+using FitnessStudioApp.Services;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
@@ -9,23 +12,67 @@ using System.Threading.Tasks;
 
 namespace FitnessStudioApp.ViewModels
 {
-    public class ProfileViewModel : INotifyPropertyChanged
+    public partial class ProfileViewModel : ObservableObject, INotifyPropertyChanged
     {
+        private readonly IApiService _apiService;
         private string _username;
+        private string _token;
+
+        [ObservableProperty]
+        private string nameOfTheWorkout;
+
+        [ObservableProperty]
+        private List<WorkoutResponse> userWorkouts = new List<WorkoutResponse>();
+
         public string Username
         {
             get => _username;
             set { _username = value; OnPropertyChanged(); }
         }
 
-        public ProfileViewModel()
+        public string Token
         {
-            LoadUsernameAsync();
+            get => _token;
+            set { _token = value; OnPropertyChanged(); }
         }
 
-        private async void LoadUsernameAsync()
+        public ProfileViewModel(IApiService apiService)
+        {
+            _apiService = apiService ?? throw new ArgumentNullException(nameof(apiService));
+            InitializeAsync();
+        }
+
+        private async Task InitializeAsync()
+        {
+            await LoadUsernameAsync();
+            await GetUserWorkoutsAsync();
+        }
+
+        private async Task LoadUsernameAsync()
         {
             Username = await SecureStorage.GetAsync("username");
+            Token = await SecureStorage.GetAsync("jwt_token");
+        }
+
+        private async Task GetUserWorkoutsAsync()
+        {
+            try
+            {
+                if (!string.IsNullOrEmpty(Token))
+                {
+                    var response = await _apiService.GetUserWorkoutsAsync($"Bearer {Token}");
+                    UserWorkouts = new List<WorkoutResponse>(response);
+                   
+                }
+                else
+                {
+                    await Application.Current.MainPage.DisplayAlert("Error", "Token is missing.", "OK");
+                }
+            }
+            catch (Exception ex)
+            {
+                await Application.Current.MainPage.DisplayAlert("Error", ex.Message, "OK");
+            }
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

@@ -3,6 +3,7 @@ using FitnessStudioBackend.Interfaces;
 using FitnessStudioBackend.Models;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.EntityFrameworkCore;
+using System;
 
 namespace FitnessStudioBackend.Repository
 {
@@ -90,6 +91,12 @@ namespace FitnessStudioBackend.Repository
 
             await _context.SaveChangesAsync();
             return existingWorkout;
+        }
+
+        public async Task<List<Workout>> GetUserWorkouts(string userId)
+        {
+            return await _context.Workout.Where(w => w.UserId == userId).Include(w => w.Exercises).ThenInclude(we => we.Exercise).Include(w => w.Exercises).ThenInclude(we => we.Sets).ToListAsync();
+            
         }
     }
 }

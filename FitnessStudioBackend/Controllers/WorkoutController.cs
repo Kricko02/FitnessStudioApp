@@ -1,9 +1,11 @@
 ﻿using FitnessStudioBackend.Dtos.Workout;
 using FitnessStudioBackend.Interfaces;
 using FitnessStudioBackend.Mappers;
+using FitnessStudioBackend.Migrations;
 using FitnessStudioBackend.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration.UserSecrets;
 using System.Security.Claims;
 
 namespace FitnessStudioBackend.Controllers
@@ -25,7 +27,7 @@ namespace FitnessStudioBackend.Controllers
             var workoutDto = workout.Select(s => s.ToWorkoutDto());
             return Ok(workoutDto);
         }
-       
+
         [HttpPost]
         [Authorize]
         public async Task<IActionResult> Create([FromBody] NewWorkoutDto workoutDto)
@@ -54,12 +56,33 @@ namespace FitnessStudioBackend.Controllers
             }
 
             string userId = HttpContext.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
-            var updatedWorkout = await _workoutRepository.UpdateAsync(id,updateDto.ToWorkoutFromUpdate(),userId);
+            var updatedWorkout = await _workoutRepository.UpdateAsync(id, updateDto.ToWorkoutFromUpdate(), userId);
             if (updatedWorkout == null)
             {
                 return NotFound("Workout not found ");
             }
             return Ok("Success");
+        }
+
+        [HttpGet("UserWorkouts")]
+        [Authorize]
+        public async Task<IActionResult> GetUserWorkouts()
+        {
+            var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+            if (string.IsNullOrEmpty(userId))
+            {
+                return Unauthorized();
+            }
+            var workouts = await _workoutRepository.GetUserWorkouts(userId);
+
+            if (workouts == null)
+            {
+                return NotFound();
+            }
+
+            var workoutDto = workouts.Select(s => s.ToWorkoutDto());
+            return Ok(workoutDto);
+
         }
     }
 }

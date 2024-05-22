@@ -65,7 +65,7 @@ namespace FitnessStudioApp.ViewModels
             }
             catch (Exception ex)
             {
-                await Application.Current.MainPage.DisplayAlert("Invalid credentials", "Please check your username and password and try again.", "OK");
+                await Application.Current.MainPage.DisplayAlert("Invalid credentials", ex.Message.ToString(), "OK");
 
             }
             finally

@@ -1,5 +1,6 @@
 ﻿using FitnessStudioApp.Models.Login;
 using FitnessStudioApp.Models.Register;
+using FitnessStudioApp.Models.Workout;
 using Refit;
 using System;
 using System.Collections.Generic;
@@ -17,6 +18,9 @@ namespace FitnessStudioApp.Services
 
         [Post("/api/account/register")]
         Task<LoginResponse> Register([Body] RegisterRequest registerRequest);
+
+        [Get("/api/workout/UserWorkouts")]
+        Task<List<WorkoutResponse>> GetUserWorkoutsAsync([Header("Authorization")] string token);
 
     }
 }
