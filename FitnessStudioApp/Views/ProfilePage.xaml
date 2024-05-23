@@ -15,7 +15,7 @@
         <ListView ItemsSource="{Binding UserWorkouts}">
             <ListView.ItemTemplate>
                 <DataTemplate>
-                    <TextCell Text="To Je Wokrkout 1234"/>
+                    <TextCell Text="basidja" /> <!--Tu bi moglo bit zdaj nprimer {Binding Name} ker mam UserWorkout je List<WorkoutResoponsov> ko me property name id...... in tak bi zdej lahk prikazal vse workoute ampak binding ne dela se pa naložijo v list in se zdja za vsak workout izpiše basdshifsdbgdsf....-->
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>

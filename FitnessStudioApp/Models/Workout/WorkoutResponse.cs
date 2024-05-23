@@ -12,12 +12,14 @@ namespace FitnessStudioApp.Models.Workout
     public class WorkoutResponse : ObservableObject
     {
         [JsonPropertyName("id")]
-        public string Id { get; set; }
+        public int id { get; set; }
         [JsonPropertyName("name")]
-        public string Name { get; set; }
+        public string name { get; set; }
         [JsonPropertyName("userId")]
-        public string UseriId { get; set; }
+        public string useriId { get; set; }
         [JsonPropertyName("exercises")]
-        public List<WorkoutExerciseResponse> Exercises { get; set; }
-}
+        public List<WorkoutExerciseResponse> exercises { get; set; }
+
+       
+    }
 }

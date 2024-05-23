@@ -1,5 +1,6 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using FitnessStudioApp.Models.Workout;
+using FitnessStudioApp.Models.WorkoutExercise;
 using FitnessStudioApp.Services;
 using System;
 using System.Collections.Generic;
@@ -17,17 +18,21 @@ namespace FitnessStudioApp.ViewModels
         private readonly IApiService _apiService;
         private string _username;
         private string _token;
+        private List<WorkoutResponse> userWorkouts;
 
-        [ObservableProperty]
-        private string nameOfTheWorkout;
+       
 
-        [ObservableProperty]
-        private List<WorkoutResponse> userWorkouts = new List<WorkoutResponse>();
 
         public string Username
         {
             get => _username;
             set { _username = value; OnPropertyChanged(); }
+        }
+
+        public List<WorkoutResponse> UserWorkouts
+        {
+            get => userWorkouts;
+            set { userWorkouts = value; OnPropertyChanged(); }
         }
 
         public string Token
@@ -62,7 +67,6 @@ namespace FitnessStudioApp.ViewModels
                 {
                     var response = await _apiService.GetUserWorkoutsAsync($"Bearer {Token}");
                     UserWorkouts = new List<WorkoutResponse>(response);
-                   
                 }
                 else
                 {
