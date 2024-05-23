@@ -18,7 +18,7 @@ namespace FitnessStudioApp.ViewModels
         private readonly IApiService _apiService;
         private string _username;
         private string _token;
-        private List<WorkoutResponse> userWorkouts;
+        public List<WorkoutResponse> userWorkouts;
 
        
 
