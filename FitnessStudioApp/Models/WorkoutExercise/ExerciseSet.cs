@@ -10,10 +10,10 @@ namespace FitnessStudioApp.Models.WorkoutExercise
     public class ExerciseSet
     {
         [JsonPropertyName("id")]
-        public int Id { get; set; }
+        public int id { get; set; }
         [JsonPropertyName("reps")]
-        public int Reps { get; set; }
+        public int reps { get; set; }
         [JsonPropertyName("weight")]
-        public int Weight { get; set; }
+        public double weight { get; set; }
     }
 }

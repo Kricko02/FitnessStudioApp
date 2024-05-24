@@ -9,15 +9,17 @@ using System.Threading.Tasks;
 
 namespace FitnessStudioApp.Models.Workout
 {
-    public class WorkoutResponse : ObservableObject
+    public class WorkoutResponse 
     {
-        [JsonPropertyName("id")]
-        public string Id { get; set; }
-        [JsonPropertyName("name")]
-        public string Name { get; set; }
-        [JsonPropertyName("userId")]
-        public string UseriId { get; set; }
-        [JsonPropertyName("exercises")]
-        public List<WorkoutExerciseResponse> Exercises { get; set; }
-}
+        
+        public int id { get; set; }
+     
+        public string name { get; set; }
+       
+        public string useriId { get; set; }
+        
+        public List<WorkoutExerciseResponse> exercises { get; set; }
+
+       
+    }
 }

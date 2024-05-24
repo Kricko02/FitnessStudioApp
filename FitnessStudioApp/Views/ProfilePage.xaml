@@ -3,7 +3,6 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:viewmodel="clr-namespace:FitnessStudioApp.ViewModels"
              x:Class="FitnessStudioApp.Views.ProfilePage"
-             x:DataType="viewmodel:ProfileViewModel"
              Title="ProfilePage">
 
     <VerticalStackLayout>
@@ -15,7 +14,42 @@
         <ListView ItemsSource="{Binding UserWorkouts}">
             <ListView.ItemTemplate>
                 <DataTemplate>
-                    <TextCell Text="To Je Wokrkout 1234"/>
+                    <ViewCell>
+                        <StackLayout>
+                            <!-- Display Workout name -->
+                            <Label Text="{Binding name}" FontAttributes="Bold" />
+
+                            <!-- Nested ListView for exercises -->
+                            <ListView ItemsSource="{Binding exercises}">
+                                <ListView.ItemTemplate>
+                                    <DataTemplate>
+                                        <ViewCell>
+                                            <StackLayout>
+                                                <!-- Display Exercise name -->
+                                                <Label Text="{Binding exercise.name}" FontAttributes="Italic" />
+
+                                                <!-- Display Sets for the Exercise -->
+                                                <ListView ItemsSource="{Binding sets}">
+                                                    <ListView.ItemTemplate>
+                                                        <DataTemplate>
+                                                            <ViewCell>
+                                                                <StackLayout Orientation="Horizontal">
+                                                                    <!-- Display Reps -->
+                                                                    <Label Text="{Binding reps}" HorizontalOptions="StartAndExpand" />
+                                                                    <!-- Display Weight -->
+                                                                    <Label Text="{Binding weight}" HorizontalOptions="EndAndExpand" />
+                                                                </StackLayout>
+                                                            </ViewCell>
+                                                        </DataTemplate>
+                                                    </ListView.ItemTemplate>
+                                                </ListView>
+                                            </StackLayout>
+                                        </ViewCell>
+                                    </DataTemplate>
+                                </ListView.ItemTemplate>
+                            </ListView>
+                        </StackLayout>
+                    </ViewCell>
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
