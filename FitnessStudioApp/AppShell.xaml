@@ -11,10 +11,16 @@
        Shell.TabBarTitleColor="Orange"
        Shell.TabBarUnselectedColor="White"
     Shell.TabBarForegroundColor="Orange"
-    Shell.FlyoutBehavior="Disabled">
+    Shell.FlyoutBehavior="Disabled" Title="FIT STUDIO">
     <TabBar >
         <Tab Title="Workouts" Icon="workouts.png">
             <ShellContent Route="WorkoutPage" >
+                <NavigationPage.TitleView>
+                    <Label
+            x:Name="pageTitleView"
+            HorizontalTextAlignment="Center"
+            Text="My title"/>
+                </NavigationPage.TitleView>
                 <ShellContent.ContentTemplate>
                     <DataTemplate>
                         <local:WorkoutsPage></local:WorkoutsPage>
