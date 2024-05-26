@@ -11,7 +11,20 @@
        Shell.TabBarTitleColor="Orange"
        Shell.TabBarUnselectedColor="White"
     Shell.TabBarForegroundColor="Orange"
-    Shell.FlyoutBehavior="Disabled" Title="FIT STUDIO">
+    Shell.FlyoutBehavior="Disabled" 
+    >
+    <Shell.TitleView>
+        <HorizontalStackLayout VerticalOptions="Fill" HorizontalOptions="Center">
+            <Label
+                FontAttributes="Bold"
+      Text="FIT STUDIO"
+      TextColor="White"
+      VerticalTextAlignment="Center"
+      VerticalOptions="Center"
+      HeightRequest="50"
+      FontSize="40" />
+        </HorizontalStackLayout>
+    </Shell.TitleView>
     <TabBar >
         <Tab Title="Workouts" Icon="workouts.png">
             <ShellContent Route="WorkoutPage" >

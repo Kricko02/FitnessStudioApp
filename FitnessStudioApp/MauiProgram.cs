@@ -39,7 +39,7 @@ public static class MauiProgram
         builder.Services.AddRefitClient<IApiService>()
                  .ConfigureHttpClient(client =>
                  {
-                     client.BaseAddress = new Uri("https://192.168.249.48:7018/");
+                     client.BaseAddress = new Uri("https://192.168.1.16:7018/");
                      client.DefaultRequestHeaders.Accept.Clear();
                      client.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
                  })
