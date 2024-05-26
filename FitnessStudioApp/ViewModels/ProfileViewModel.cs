@@ -17,10 +17,11 @@ namespace FitnessStudioApp.ViewModels
     {
         private readonly IApiService _apiService;
         private string _username;
+        private string _email = "tilen@gmail.com";
         private string _token;
         public List<WorkoutResponse> userWorkouts;
 
-       
+        private int totalWeight = 1234;
 
 
         public string Username
@@ -28,17 +29,27 @@ namespace FitnessStudioApp.ViewModels
             get => _username;
             set { _username = value; OnPropertyChanged(); }
         }
+        public string Email
+        {
+            get => _email;
+            set { _email = value; OnPropertyChanged(); }
+        }
 
         public List<WorkoutResponse> UserWorkouts
         {
             get => userWorkouts;
             set { userWorkouts = value; OnPropertyChanged(); }
         }
-
+        
         public string Token
         {
             get => _token;
             set { _token = value; OnPropertyChanged(); }
+        }
+        public int TotalWeight
+        {
+            get => totalWeight;
+            set { totalWeight = value; OnPropertyChanged(); }
         }
 
         public ProfileViewModel(IApiService apiService)
