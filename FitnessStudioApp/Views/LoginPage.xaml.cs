@@ -1,10 +1,14 @@
+using FitnessStudioApp.Resources.Languages;
 using FitnessStudioApp.Services;
 using FitnessStudioApp.ViewModels;
+using System.Globalization;
 
 namespace FitnessStudioApp.Views;
 
 public partial class LoginPage : ContentPage
 {
+    
+
     public LoginPage()
     {
         InitializeComponent();
@@ -78,5 +82,10 @@ public partial class LoginPage : ContentPage
             return false;
         }
         return true;
+    }
+
+    private void bt_ForgotPassword_Clicked(object sender, TouchEventArgs e)
+    {
+       
     }
 }

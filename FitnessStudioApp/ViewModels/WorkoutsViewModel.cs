@@ -1,19 +1,16 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
-using FitnessStudioApp.Models.Workout;
-using FitnessStudioApp.Models.WorkoutExercise;
 using FitnessStudioApp.Services;
 using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
-using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
 
 namespace FitnessStudioApp.ViewModels
 {
-    public partial class ProfileViewModel : ObservableObject, INotifyPropertyChanged
+    public class WorkoutsViewModel : ObservableObject, INotifyPropertyChanged
     {
         public LocalizationResourceManager LocalizationResourceManager
      => LocalizationResourceManager.Instance;
@@ -22,10 +19,7 @@ namespace FitnessStudioApp.ViewModels
         private string _username;
         private string _email = "tilen@gmail.com";
         private string _token;
-        public List<WorkoutResponse> userWorkouts;
-
         private int totalWeight = 1234;
-
 
         public string Username
         {
@@ -38,12 +32,12 @@ namespace FitnessStudioApp.ViewModels
             set { _email = value; OnPropertyChanged(); }
         }
 
-        public List<WorkoutResponse> UserWorkouts
-        {
-            get => userWorkouts;
-            set { userWorkouts = value; OnPropertyChanged(); }
-        }
-        
+        //public List<WorkoutResponse> UserWorkouts
+        //{
+        //    get => userWorkouts;
+        //    set { userWorkouts = value; OnPropertyChanged(); }
+        //}
+
         public string Token
         {
             get => _token;
@@ -54,49 +48,22 @@ namespace FitnessStudioApp.ViewModels
             get => totalWeight;
             set { totalWeight = value; OnPropertyChanged(); }
         }
-
-        public ProfileViewModel(IApiService apiService)
+        public ICommand FinishComand { get; }
+        public WorkoutsViewModel(IApiService apiService)
         {
             _apiService = apiService ?? throw new ArgumentNullException(nameof(apiService));
+            //FinishComand = new Command(async () => await Login(), () => !IsBusy);  tole je treba popravit
             InitializeAsync();
         }
-
         private async Task InitializeAsync()
         {
             await LoadUsernameAsync();
-            await GetUserWorkoutsAsync();
+            //await GetUserWorkoutsAsync();
         }
-
         private async Task LoadUsernameAsync()
         {
             Username = await SecureStorage.GetAsync("username");
             Token = await SecureStorage.GetAsync("jwt_token");
-        }
-
-        private async Task GetUserWorkoutsAsync()
-        {
-            try
-            {
-                if (!string.IsNullOrEmpty(Token))
-                {
-                    var response = await _apiService.GetUserWorkoutsAsync($"Bearer {Token}");
-                    UserWorkouts = new List<WorkoutResponse>(response);
-                }
-                else
-                {
-                    await Application.Current.MainPage.DisplayAlert("Error", "Token is missing.", "OK");
-                }
-            }
-            catch (Exception ex)
-            {
-                await Application.Current.MainPage.DisplayAlert("Error", ex.Message, "OK");
-            }
-        }
-
-        public event PropertyChangedEventHandler PropertyChanged;
-        protected void OnPropertyChanged([CallerMemberName] string propertyName = null)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
     }
 }

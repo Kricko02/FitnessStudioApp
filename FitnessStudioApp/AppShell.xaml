@@ -5,6 +5,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:mdc="clr-namespace:Material.Components.Maui;assembly=Material.Components.Maui"
     xmlns:icon="clr-namespace:IconPacks.IconKind;assembly=IconPacks.Material"
+     xmlns:lang="clr-namespace:FitnessStudioApp.Resources.Languages"
     xmlns:local="clr-namespace:FitnessStudioApp.Views"   
     Shell.BackgroundColor="Black"
     Shell.TabBarBackgroundColor="Black"
@@ -26,7 +27,7 @@
         </HorizontalStackLayout>
     </Shell.TitleView>
     <TabBar >
-        <Tab Title="Workouts" Icon="workouts.png">
+        <Tab Title="{Binding LocalizationResourceManager[Workouts],Mode=OneWay}" Icon="workouts.png">
             <ShellContent Route="WorkoutPage" >
                 <NavigationPage.TitleView>
                     <Label
@@ -41,7 +42,7 @@
                 </ShellContent.ContentTemplate>
             </ShellContent>
         </Tab>
-        <Tab Title="Social" Icon="circle_white.png">
+        <Tab Title="{Binding LocalizationResourceManager[Social],Mode=OneWay}" Icon="circle_white.png">
             <ShellContent Route="WorkoutPage">
                 <ShellContent.ContentTemplate>
                     <DataTemplate>
@@ -50,7 +51,7 @@
                 </ShellContent.ContentTemplate>
             </ShellContent>
         </Tab>
-        <Tab Title="Profile" Icon="profile_white.png">
+        <Tab Title="{Binding LocalizationResourceManager[Profile],Mode=OneWay}" Icon="profile_white.png">
             <ShellContent Route="WorkoutPage">
                 <ShellContent.ContentTemplate>
                     <DataTemplate>

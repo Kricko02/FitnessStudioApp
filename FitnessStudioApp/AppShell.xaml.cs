@@ -1,9 +1,9 @@
-﻿
-
-namespace FitnessStudioApp.Views
+﻿namespace FitnessStudioApp.Views
 {
     public partial class AppShell : Shell
     {
+        public LocalizationResourceManager LocalizationResourceManager
+     => LocalizationResourceManager.Instance;
         public AppShell()
         {
             InitializeComponent();
@@ -11,8 +11,7 @@ namespace FitnessStudioApp.Views
             Routing.RegisterRoute(nameof(LoginPage),typeof(LoginPage));
             Routing.RegisterRoute(nameof(WorkoutsPage),typeof(WorkoutsPage));
             Routing.RegisterRoute(nameof(ProfilePage),typeof(ProfilePage));
+            BindingContext = this;
         }
-       
-            
     }
 }
