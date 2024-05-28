@@ -2,12 +2,108 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="FitnessStudioApp.Views.WorkoutsPage"
-              xmlns:local="clr-namespace:FitnessStudioApp.Views"
-             Title="WorkoutsPage">
-    <VerticalStackLayout>
-        <Label 
-            Text="Workouts"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-    </VerticalStackLayout>
+             xmlns:viewmodel="clr-namespace:FitnessStudioApp.ViewModels"
+             xmlns:mdc="clr-namespace:Material.Components.Maui;assembly=Material.Components.Maui"
+             xmlns:icon="clr-namespace:IconPacks.IconKind;assembly=IconPacks.Material"
+              xmlns:lang="clr-namespace:FitnessStudioApp.Resources.Languages"
+             Title="WorkoutsPage" Background="Black">
+    <ContentPage.Resources>
+        <!-- Define styles for labels -->
+        <Style x:Key="UsernameLabelStyle" TargetType="Label">
+            <Setter Property="TextColor" Value="White"/>
+        </Style>
+        <Style x:Key="TitleLabelStyle" TargetType="Label">
+            <Setter Property="TextColor" Value="White"/>
+            <Setter Property="FontAttributes" Value="Bold"/>
+            <Setter Property="FontSize" Value="25"/>
+        </Style>
+        <Style x:Key="SubTitleLabelStyle" TargetType="Label">
+            <Setter Property="TextColor" Value="Orange"/>
+            <Setter Property="FontAttributes" Value="Bold"/>
+            <Setter Property="FontSize" Value="Body"/>
+        </Style>
+        <Style x:Key="ContentLabelStyle" TargetType="Label">
+            <Setter Property="TextColor" Value="White"/>
+            <Setter Property="FontSize" Value="Small"/>
+        </Style>
+        <Style x:Key="ContentStackLayoutStyle" TargetType="StackLayout">
+            <Setter Property="Spacing" Value="5"/>
+            <Setter Property="Margin" Value="10,5,10,5"/>
+        </Style>
+    </ContentPage.Resources>
+    <ScrollView>
+        <VerticalStackLayout>
+            <Grid Margin="0,10,0,10" >
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"></RowDefinition>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Label  Text="{Binding LocalizationResourceManager[LogWorkout],Mode=OneWay}" Margin="20,0,0,0" VerticalOptions="Center" HorizontalOptions="Center" Style="{StaticResource UsernameLabelStyle }" FontAttributes="Bold" FontSize="23" Grid.Row="0" Grid.Column="0"/>
+                <mdc:Button Style="{StaticResource TextButtonStyle}" x:Name="bt_register" Command="{Binding FinishComand}" FontSize="20" Grid.Column="1" HorizontalOptions="End" Margin="10,0,10,0" Text="{Binding LocalizationResourceManager[Finish],Mode=OneWay}" FontWeight="Bold" FontColor="Orange"/>
+            </Grid>
+            <!--<ListView  ItemsSource="{Binding UserWorkouts}"
+          BackgroundColor="Transparent"
+          SelectionMode="None" HasUnevenRows="True" Grid.Row="1" SeparatorColor="Transparent">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Border Stroke="Orange" StrokeThickness="1" StrokeShape="RoundRectangle 20" Background="Transparent" Padding="8,8">
+                                <StackLayout Style="{StaticResource ContentStackLayoutStyle}" Margin="10,0,0,10">
+                                    --><!-- Display Workout name --><!--
+
+                                    <Label Text="{Binding name}" Style="{StaticResource TitleLabelStyle}" Margin="10,2,0,0"/>
+                                    --><!--<Border></Border>-->
+                                    <!-- Nested ListView for exercises --><!--
+                                    <ListView ItemsSource="{Binding exercises}"
+                              BackgroundColor="Transparent"
+                              SeparatorColor="Transparent"
+                              HasUnevenRows="True" SelectionMode="None" >
+                                        <ListView.ItemTemplate>
+                                            <DataTemplate>
+                                                <ViewCell>
+                                                    <StackLayout Style="{StaticResource ContentStackLayoutStyle}">
+                                                        --><!-- Display Exercise name --><!--
+                                                        <Label Text="{Binding exercise.name}" Style="{StaticResource SubTitleLabelStyle}" Margin="5,5,5,0"/>
+                                                        <StackLayout Orientation="Horizontal"  Style="{StaticResource ContentStackLayoutStyle}">
+                                                            --><!-- Display Reps --><!--
+                                                            <Label Text="Repetitions" Style="{StaticResource ContentLabelStyle}" HorizontalOptions="StartAndExpand"/>
+                                                            --><!-- Display Weight --><!--
+                                                            <Label Text="Weight(kg)" Style="{StaticResource ContentLabelStyle}" HorizontalOptions="Center"/>
+                                                        </StackLayout>
+                                                        --><!-- Display Sets for the Exercise --><!--
+                                                        <ListView ItemsSource="{Binding sets}"
+                                                  BackgroundColor="Transparent"
+                                                  SeparatorColor="Transparent"
+                                                  HasUnevenRows="True" SelectionMode="None">
+                                                            <ListView.ItemTemplate>
+                                                                <DataTemplate>
+                                                                    <ViewCell>
+                                                                        <StackLayout Orientation="Horizontal"
+                                                                     Style="{StaticResource ContentStackLayoutStyle}" VerticalOptions="CenterAndExpand">
+                                                                            --><!-- Display Reps --><!--
+                                                                            <Label Text="{Binding reps}" Style="{StaticResource ContentLabelStyle}" Margin="30,0,0,0" HorizontalOptions="StartAndExpand"/>
+
+                                                                            <Label Text="{Binding weight}" Style="{StaticResource ContentLabelStyle}" Margin="0,0,20,0" HorizontalOptions="Center"/>
+                                                                        </StackLayout>
+                                                                    </ViewCell>
+                                                                </DataTemplate>
+                                                            </ListView.ItemTemplate>
+                                                        </ListView>
+                                                    </StackLayout>
+                                                </ViewCell>
+                                            </DataTemplate>
+                                        </ListView.ItemTemplate>
+                                    </ListView>
+                                </StackLayout>
+                            </Border>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>-->
+
+        </VerticalStackLayout>
+    </ScrollView>
 </ContentPage>

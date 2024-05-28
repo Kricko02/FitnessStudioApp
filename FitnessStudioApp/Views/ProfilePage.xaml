@@ -3,7 +3,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:viewmodel="clr-namespace:FitnessStudioApp.ViewModels"
              xmlns:mdc="clr-namespace:Material.Components.Maui;assembly=Material.Components.Maui"
-xmlns:icon="clr-namespace:IconPacks.IconKind;assembly=IconPacks.Material"
+             xmlns:icon="clr-namespace:IconPacks.IconKind;assembly=IconPacks.Material"
+              xmlns:lang="clr-namespace:FitnessStudioApp.Resources.Languages"
              x:Class="FitnessStudioApp.Views.ProfilePage"
              Title="FitStudio" Background="Black">
 
@@ -53,15 +54,33 @@ xmlns:icon="clr-namespace:IconPacks.IconKind;assembly=IconPacks.Material"
                     <!--<mdc:FAB IconData="{Static icon:Material.Settings}"  Background="Orange" IconColor="White" Margin="3" Grid.Column="2" HorizontalOptions="End"/>-->
                     <Label  Text="{Binding Username}" Margin="20,0,0,0" VerticalOptions="Center"   Style="{StaticResource UsernameLabelStyle }" FontSize="23" Grid.Row="1" Grid.Column="0"/>
                     <Label  Text="{Binding Email}" Margin="15,2,0,0" VerticalOptions="Center"  Style="{StaticResource UsernameLabelStyle }" FontSize="15" Grid.Column="0" Grid.Row="2"/>
-                    <Label Style="{StaticResource UsernameLabelStyle}" Margin="0,0,5,0" Grid.Column="1" Grid.Row="1"  VerticalOptions="Center" TextColor="DarkGray" FontSize="18" FontAttributes="Bold" HorizontalOptions="Center">Currently lifting</Label>
-                    <Label  Text="Total volume:" VerticalOptions="Center" Grid.Column="1" Grid.Row="2" HorizontalOptions="Center" Style="{StaticResource UsernameLabelStyle }" TextColor="Orange" FontSize="18" FontAttributes="Bold"/>
+                    <Label Style="{StaticResource UsernameLabelStyle}" Margin="0,0,5,0" Grid.Column="1" Grid.Row="1"  VerticalOptions="Center" TextColor="DarkGray" FontSize="18" FontAttributes="Bold" HorizontalOptions="Center" Text="{Binding LocalizationResourceManager[CurentlyLifting],Mode=OneWay}"></Label>
+                    <Label  Text="{Binding LocalizationResourceManager[TotalVolume],Mode=OneWay}" VerticalOptions="Center" Grid.Column="1" Grid.Row="2" HorizontalOptions="Center" Style="{StaticResource UsernameLabelStyle }" TextColor="Orange" FontSize="18" FontAttributes="Bold"/>
                     <StackLayout Grid.Column="2" Grid.Row="3" Orientation="Horizontal" HorizontalOptions="Center">
                         <Label  Text="{Binding TotalWeight}" VerticalOptions="Center" Margin="0,0,5,0"  HorizontalOptions="Start" Style="{StaticResource UsernameLabelStyle }" TextColor="Orange" FontSize="18" FontAttributes="Bold"/>
                         <Label  Text="kg" VerticalOptions="Center"   HorizontalOptions="Start" Style="{StaticResource UsernameLabelStyle }" TextColor="Orange" FontSize="18" FontAttributes="Bold"/>
                     </StackLayout>
                 </Grid>
             </Border>
-                <Label  Text="History"  VerticalOptions="Center" HorizontalOptions="Center"  Style="{StaticResource UsernameLabelStyle }" FontSize="23"/>
+            <Border Stroke="Orange" Margin="2,2,2,10"
+StrokeThickness="3"
+StrokeShape="RoundRectangle 30,30,30,30"
+Background="Transparent"
+Padding="8,8">
+                <Grid Margin="0,10,0,10" >
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Label  Text="{Binding LocalizationResourceManager[Language],Mode=OneWay}" Margin="20,0,20,0" VerticalOptions="Center"   Style="{StaticResource UsernameLabelStyle }" FontSize="23" Grid.Row="1" Grid.Column="0"/>
+                    <mdc:RadioButton Orientation="Vertical" SelectedChanged="RadioButton_SelectedChanged" Grid.Column="1" x:Name="rb_jezik" VerticalOptions="Center">
+                    <mdc:RadioItem x:Name="bt_english" Text="{Binding LocalizationResourceManager[English],Mode=OneWay}" FontColor="White" ActivedColor="Orange"/>
+                    <mdc:RadioItem x:Name="bt_slovenian" Text="{Binding LocalizationResourceManager[Slovenian],Mode=OneWay}" FontColor="White" ActivedColor="Orange"/>
+                    <mdc:RadioItem x:Name="bt_german" Text="{Binding LocalizationResourceManager[German],Mode=OneWay}" FontColor="White" ActivedColor="Orange"/>
+                </mdc:RadioButton>
+                </Grid>
+            </Border>
+            <Label  Text="{Binding LocalizationResourceManager[History],Mode=OneWay}" Margin="0,0,0,5"  VerticalOptions="Center" HorizontalOptions="Center"  Style="{StaticResource UsernameLabelStyle }" FontSize="23"/>
             <!--<Border Stroke="Orange"  StrokeThickness="2" StrokeShape="Line 100 0 300 0" Margin="10,0,10,5" VerticalOptions="Center" Background="Transparent">
             </Border>-->
 
@@ -90,9 +109,9 @@ xmlns:icon="clr-namespace:IconPacks.IconKind;assembly=IconPacks.Material"
                                                         <Label Text="{Binding exercise.name}" Style="{StaticResource SubTitleLabelStyle}" Margin="5,5,5,0"/>
                                                         <StackLayout Orientation="Horizontal"  Style="{StaticResource ContentStackLayoutStyle}">
                                                             <!-- Display Reps -->
-                                                            <Label Text="Repetitions" Style="{StaticResource ContentLabelStyle}" HorizontalOptions="StartAndExpand"/>
+                                                            <Label Text="{Binding LocalizationResourceManager[Repetitions],Mode=OneWay}" Style="{StaticResource ContentLabelStyle}" HorizontalOptions="StartAndExpand"/>
                                                             <!-- Display Weight -->
-                                                            <Label Text="Weight(kg)" Style="{StaticResource ContentLabelStyle}" HorizontalOptions="Center"/>
+                                                            <Label Text="{Binding LocalizationResourceManager[Weight],Mode=OneWay}" Style="{StaticResource ContentLabelStyle}" HorizontalOptions="Center"/>
                                                         </StackLayout>
                                                         <!-- Display Sets for the Exercise -->
                                                         <ListView ItemsSource="{Binding sets}"

@@ -17,6 +17,9 @@ namespace FitnessStudioApp.ViewModels
 {
     public partial class LoginViewModel :ObservableObject, INotifyPropertyChanged
     {
+        public LocalizationResourceManager LocalizationResourceManager
+      => LocalizationResourceManager.Instance;
+
         private readonly IApiService _apiService;
 
         public bool IsBusy = false;
