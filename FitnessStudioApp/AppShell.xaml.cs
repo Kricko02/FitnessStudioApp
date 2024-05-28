@@ -11,8 +11,7 @@
             Routing.RegisterRoute(nameof(LoginPage),typeof(LoginPage));
             Routing.RegisterRoute(nameof(WorkoutsPage),typeof(WorkoutsPage));
             Routing.RegisterRoute(nameof(ProfilePage),typeof(ProfilePage));
+            BindingContext = this;
         }
-       
-            
     }
 }
