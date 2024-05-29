@@ -6,12 +6,25 @@ namespace FitnessStudioApp.Views;
 
 public partial class ProfilePage : ContentPage
 {
-	public ProfilePage()
-	{
-		InitializeComponent();
-        BindingContext = ResolveViewModel();
+    private ProfileViewModel _viewModel;
+
+    public ProfilePage()
+    {
+        InitializeComponent();
+        _viewModel = ResolveViewModel();
+        BindingContext = _viewModel;
         PreveriJezik();
     }
+
+    protected override async void OnAppearing()
+    {
+        base.OnAppearing();
+        if (_viewModel != null)
+        {
+            await _viewModel.InitializeAsync();
+        }
+    }
+
     void PreveriJezik()
     {
         if (AppResources.Culture.TwoLetterISOLanguageName.Equals("en", StringComparison.InvariantCultureIgnoreCase))
@@ -27,33 +40,33 @@ public partial class ProfilePage : ContentPage
             rb_jezik.SelectedIndex = 2;
         }
     }
+
     private ProfileViewModel ResolveViewModel()
     {
         // Retrieve the service provider
         var serviceProvider = MauiProgram.Services;
-        // Resolve the LoginViewModel
+        // Resolve the ProfileViewModel
         var profileViewModel = serviceProvider.GetService<ProfileViewModel>();
         return profileViewModel;
     }
 
     private void RadioButton_SelectedChanged(object sender, SelectedItemChangedEventArgs e)
     {
-        if (rb_jezik.SelectedIndex==0)
+        if (rb_jezik.SelectedIndex == 0)
         {
             var switchToCulture = new CultureInfo("en-US");
             LocalizationResourceManager.Instance.SetCulture(switchToCulture);
         }
-        else
-        if (rb_jezik.SelectedIndex == 1)
+        else if (rb_jezik.SelectedIndex == 1)
         {
             var switchToCulture = new CultureInfo("sl");
             LocalizationResourceManager.Instance.SetCulture(switchToCulture);
         }
-        else
-        if (rb_jezik.SelectedIndex == 2)
+        else if (rb_jezik.SelectedIndex == 2)
         {
             var switchToCulture = new CultureInfo("de");
             LocalizationResourceManager.Instance.SetCulture(switchToCulture);
         }
     }
 }
+
