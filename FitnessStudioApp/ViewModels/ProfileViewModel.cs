@@ -15,17 +15,14 @@ namespace FitnessStudioApp.ViewModels
 {
     public partial class ProfileViewModel : ObservableObject, INotifyPropertyChanged
     {
-        public LocalizationResourceManager LocalizationResourceManager
-     => LocalizationResourceManager.Instance;
+        public LocalizationResourceManager LocalizationResourceManager => LocalizationResourceManager.Instance;
 
         private readonly IApiService _apiService;
         private string _username;
         private string _email = "tilen@gmail.com";
         private string _token;
         public List<WorkoutResponse> userWorkouts;
-
         private int totalWeight = 1234;
-
 
         public string Username
         {
@@ -37,13 +34,11 @@ namespace FitnessStudioApp.ViewModels
             get => _email;
             set { _email = value; OnPropertyChanged(); }
         }
-
         public List<WorkoutResponse> UserWorkouts
         {
             get => userWorkouts;
             set { userWorkouts = value; OnPropertyChanged(); }
         }
-        
         public string Token
         {
             get => _token;
@@ -58,10 +53,9 @@ namespace FitnessStudioApp.ViewModels
         public ProfileViewModel(IApiService apiService)
         {
             _apiService = apiService ?? throw new ArgumentNullException(nameof(apiService));
-            InitializeAsync();
         }
 
-        private async Task InitializeAsync()
+        public async Task InitializeAsync()
         {
             await LoadUsernameAsync();
             await GetUserWorkoutsAsync();
@@ -73,7 +67,7 @@ namespace FitnessStudioApp.ViewModels
             Token = await SecureStorage.GetAsync("jwt_token");
         }
 
-        private async Task GetUserWorkoutsAsync()
+        public async Task GetUserWorkoutsAsync()
         {
             try
             {
@@ -100,3 +94,5 @@ namespace FitnessStudioApp.ViewModels
         }
     }
 }
+
+

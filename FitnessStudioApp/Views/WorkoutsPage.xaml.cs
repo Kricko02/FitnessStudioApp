@@ -9,10 +9,10 @@ public partial class WorkoutsPage : ContentPage
 		InitializeComponent();
         BindingContext = ResolveViewModel();
     }
-    private WorkoutsViewModel ResolveViewModel()
+    private WorkoutViewModel ResolveViewModel()
     {
         var serviceProvider = MauiProgram.Services;
-        var workoutsViewModel = serviceProvider.GetService<WorkoutsViewModel>();
+        var workoutsViewModel = serviceProvider.GetService<WorkoutViewModel>();
         return workoutsViewModel;
     }
 }

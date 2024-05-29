@@ -22,5 +22,8 @@ namespace FitnessStudioApp.Services
         [Get("/api/workout/UserWorkouts")]
         Task<List<WorkoutResponse>> GetUserWorkoutsAsync([Header("Authorization")] string token);
 
+        [Post("/api/workout")]
+        Task<String> PostWorkout([Header("Authorization")] string token,[Body] WorkoutRequest workoutRequest);
+
     }
 }

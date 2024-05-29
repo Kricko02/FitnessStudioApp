@@ -32,6 +32,7 @@ public static class MauiProgram
         builder.Services.AddTransient<ProfilePage>();
         builder.Services.AddSingleton<ProfileViewModel>();
         builder.Services.AddSingleton<RegisterViewModel>();
+        builder.Services.AddSingleton<WorkoutViewModel>();
 
         builder.Services.AddTransient<LoginViewModel>();
        
@@ -39,7 +40,7 @@ public static class MauiProgram
         builder.Services.AddRefitClient<IApiService>()
                  .ConfigureHttpClient(client =>
                  {
-                     client.BaseAddress = new Uri("https://192.168.5.111:7018/");
+                     client.BaseAddress = new Uri("https://164.8.221.120:7018/");
                      client.DefaultRequestHeaders.Accept.Clear();
                      client.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
                  })
