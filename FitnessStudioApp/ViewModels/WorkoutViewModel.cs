@@ -12,6 +12,7 @@ namespace FitnessStudioApp.ViewModels
 {
     public partial class WorkoutViewModel : ObservableObject
     {
+        public LocalizationResourceManager LocalizationResourceManager => LocalizationResourceManager.Instance;
         private ObservableCollection<ExerciseViewModel> exercises;
         private ObservableCollection<string> availableExercises;
         private string selectedExercise;

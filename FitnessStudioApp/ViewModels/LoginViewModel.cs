@@ -52,10 +52,8 @@ namespace FitnessStudioApp.ViewModels
        
         async Task Login()
         {
-             Console.WriteLine(username + ", " + password);
 
             if (IsBusy) return;
-
             IsBusy = true;
             try
             {

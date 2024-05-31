@@ -4,10 +4,45 @@
              xmlns:viewmodel="clr-namespace:FitnessStudioApp.ViewModels"
              x:Class="FitnessStudioApp.Views.WorkoutsPage"
              xmlns:mdc="clr-namespace:Material.Components.Maui;assembly=Material.Components.Maui"
+                xmlns:lang="clr-namespace:FitnessStudioApp.Resources.Languages"
              Title="WorkoutsPage">
-
+    <ContentPage.Resources>
+        <!-- Define styles for labels -->
+        <Style x:Key="UsernameLabelStyle" TargetType="Label">
+            <Setter Property="TextColor" Value="White"/>
+        </Style>
+        <Style x:Key="TitleLabelStyle" TargetType="Label">
+            <Setter Property="TextColor" Value="White"/>
+            <Setter Property="FontAttributes" Value="Bold"/>
+            <Setter Property="FontSize" Value="25"/>
+        </Style>
+        <Style x:Key="SubTitleLabelStyle" TargetType="Label">
+            <Setter Property="TextColor" Value="Orange"/>
+            <Setter Property="FontAttributes" Value="Bold"/>
+            <Setter Property="FontSize" Value="Body"/>
+        </Style>
+        <Style x:Key="ContentLabelStyle" TargetType="Label">
+            <Setter Property="TextColor" Value="White"/>
+            <Setter Property="FontSize" Value="Small"/>
+        </Style>
+        <Style x:Key="ContentStackLayoutStyle" TargetType="StackLayout">
+            <Setter Property="Spacing" Value="5"/>
+            <Setter Property="Margin" Value="10,5,10,5"/>
+        </Style>
+    </ContentPage.Resources>
     <StackLayout>
-        <Entry Placeholder="Name of the workout" Text="{Binding WorkoutName}" WidthRequest="250" x:Name="tb_username" ></Entry>
+        <Grid Margin="0,10,0,10" >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"></RowDefinition>
+                <RowDefinition Height="auto"></RowDefinition>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Label  Text="" Margin="0,10,0,0" VerticalOptions="Center" Style="{StaticResource UsernameLabelStyle }" FontSize="20" Grid.Row="1" Grid.Column="0"/>
+            <mdc:Button  Command="{Binding PostWorkoutCommand}" Style="{DynamicResource TextButtonStyle}" Margin="10"  FontSize="18" Text="Finish" FontColor="White" BackgroundColor="Orange" VerticalOptions="End"/>
+            <Entry Placeholder="Name of the workout" Margin="10" Text="{Binding WorkoutName}" Grid.Row="1" VerticalOptions="Center" ></Entry>
+        </Grid>
         <Picker Title="Select Exercise"
                 ItemsSource="{Binding AvailableExercises}"
                 SelectedItem="{Binding SelectedExercise}" />
@@ -31,7 +66,6 @@
                                         <Entry Text="{Binding Reps, Mode=TwoWay}"
                                                WidthRequest="50"
                                                Keyboard="Numeric" />
-
                                         <Label Text="Weight:" />
                                         <Entry Text="{Binding Weight, Mode=TwoWay}"
                                                WidthRequest="50"
@@ -48,6 +82,5 @@
                 </DataTemplate>
             </CollectionView.ItemTemplate>
         </CollectionView>
-        <mdc:Button x:Name="bt_SignIn" Command="{Binding PostWorkoutCommand}" Style="{DynamicResource FilledButtonStyle}" WidthRequest="250" HeightRequest="50" FontSize="20" Text="Post Workout" Margin="10" FontColor="White" BackgroundColor="Orange"/>
     </StackLayout>
 </ContentPage>
