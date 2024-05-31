@@ -46,7 +46,7 @@
             <ShellContent Route="WorkoutPage">
                 <ShellContent.ContentTemplate>
                     <DataTemplate>
-                        <local:WorkoutsPage></local:WorkoutsPage>
+                        <local:SocialPage></local:SocialPage>
                     </DataTemplate>
                 </ShellContent.ContentTemplate>
             </ShellContent>

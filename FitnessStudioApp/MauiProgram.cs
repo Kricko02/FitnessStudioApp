@@ -33,6 +33,8 @@ public static class MauiProgram
         builder.Services.AddSingleton<ProfileViewModel>();
         builder.Services.AddSingleton<RegisterViewModel>();
         builder.Services.AddSingleton<WorkoutViewModel>();
+        builder.Services.AddTransient<SocialPage>();
+        builder.Services.AddSingleton<SocialViewModel>();
 
         builder.Services.AddTransient<LoginViewModel>();
        

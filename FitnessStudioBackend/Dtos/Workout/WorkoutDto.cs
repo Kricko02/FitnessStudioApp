@@ -7,6 +7,7 @@ namespace FitnessStudioBackend.Dtos.Workout
         public int Id { get; set; }
         public string Name { get; set; }
         public string UserId { get; set; }
+        public string UserName { get; set; }
         public List<WorkoutExerciseDto> Exercises { get; set; }
     }
 }
