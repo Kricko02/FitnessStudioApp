@@ -17,6 +17,7 @@ namespace FitnessStudioApp.Models.Workout
         public string name { get; set; }
        
         public string useriId { get; set; }
+        public string userName { get; set; }
         
         public List<WorkoutExerciseResponse> exercises { get; set; }
 

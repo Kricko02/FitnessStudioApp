@@ -12,6 +12,7 @@ namespace FitnessStudioBackend.Mappers
                 Id = workoutModel.WorkoutId,
                 Name = workoutModel.Name,
                 UserId = workoutModel.UserId,
+                UserName = workoutModel.User.UserName,
                 Exercises = workoutModel.Exercises.Select(c => c.ToWorkoutExerciseDto()).ToList()
             };
         }

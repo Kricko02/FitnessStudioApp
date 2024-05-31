@@ -16,7 +16,14 @@ namespace FitnessStudioBackend.Repository
         }
         public async Task<List<Workout>> GetAllAsync()
         {
-            return await _context.Workout.Include(w => w.Exercises).ThenInclude(we => we.Exercise).Include(w => w.Exercises).ThenInclude(we => we.Sets).ToListAsync();
+            return await _context.Workout
+         .Include(u => u.User)
+         .Include(w => w.Exercises)
+             .ThenInclude(we => we.Exercise)
+         .Include(w => w.Exercises)
+             .ThenInclude(we => we.Sets)
+         .OrderByDescending(w => w.WorkoutId) // Order by Id in descending order
+         .ToListAsync();
         }
 
         public async Task<Workout> CreateAsync(Workout exerciseModel)
@@ -95,7 +102,7 @@ namespace FitnessStudioBackend.Repository
 
         public async Task<List<Workout>> GetUserWorkouts(string userId)
         {
-            return await _context.Workout.Where(w => w.UserId == userId).Include(w => w.Exercises).ThenInclude(we => we.Exercise).Include(w => w.Exercises).ThenInclude(we => we.Sets).ToListAsync();
+            return await _context.Workout.Where(w => w.UserId == userId).Include(u=>u.User).Include(w => w.Exercises).ThenInclude(we => we.Exercise).Include(w => w.Exercises).ThenInclude(we => we.Sets).ToListAsync();
             
         }
     }
