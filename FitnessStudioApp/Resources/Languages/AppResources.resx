@@ -169,7 +169,7 @@
     <value>Repetitions</value>
   </data>
   <data name="Reps" xml:space="preserve">
-    <value>Reps</value>
+    <value>Reps:</value>
   </data>
   <data name="SelectExcercise" xml:space="preserve">
     <value>Select exercise</value>
@@ -193,9 +193,9 @@
     <value>Weight(kg)</value>
   </data>
   <data name="WeightWorkout" xml:space="preserve">
-    <value>Weight</value>
+    <value>Weight:</value>
   </data>
-  <data name="Workout name" xml:space="preserve">
+  <data name="WorkoutName" xml:space="preserve">
     <value>Name of workout</value>
   </data>
   <data name="Workouts" xml:space="preserve">

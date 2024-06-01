@@ -4,8 +4,8 @@
              xmlns:viewmodel="clr-namespace:FitnessStudioApp.ViewModels"
              x:Class="FitnessStudioApp.Views.WorkoutsPage"
              xmlns:mdc="clr-namespace:Material.Components.Maui;assembly=Material.Components.Maui"
-                xmlns:lang="clr-namespace:FitnessStudioApp.Resources.Languages"
-             Title="WorkoutsPage">
+             xmlns:lang="clr-namespace:FitnessStudioApp.Resources.Languages"
+             Title="WorkoutsPage" Background="Black">
     <ContentPage.Resources>
         <!-- Define styles for labels -->
         <Style x:Key="UsernameLabelStyle" TargetType="Label">
@@ -30,7 +30,7 @@
             <Setter Property="Margin" Value="10,5,10,5"/>
         </Style>
     </ContentPage.Resources>
-    <StackLayout>
+    <StackLayout Style="{StaticResource ContentStackLayoutStyle}">
         <Grid Margin="0,10,0,10" >
             <Grid.RowDefinitions>
                 <RowDefinition Height="auto"></RowDefinition>
@@ -38,44 +38,53 @@
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>
+                <ColumnDefinition/>
             </Grid.ColumnDefinitions>
-            <Label  Text="" Margin="0,10,0,0" VerticalOptions="Center" Style="{StaticResource UsernameLabelStyle }" FontSize="20" Grid.Row="1" Grid.Column="0"/>
-            <mdc:Button  Command="{Binding PostWorkoutCommand}" Style="{DynamicResource TextButtonStyle}" Margin="10"  FontSize="18" Text="Finish" FontColor="White" BackgroundColor="Orange" VerticalOptions="End"/>
-            <Entry Placeholder="Name of the workout" Margin="10" Text="{Binding WorkoutName}" Grid.Row="1" VerticalOptions="Center" ></Entry>
+            <Label  Text="{Binding LocalizationResourceManager[LogWorkout],Mode=OneWay}" Grid.ColumnSpan="2" Margin="0,10,0,10" VerticalOptions="Center" HorizontalOptions="Center" Style="{StaticResource UsernameLabelStyle }" FontSize="20" Grid.Row="0" Grid.Column="0" />
+            <mdc:Button  Command="{Binding PostWorkoutCommand}" Style="{DynamicResource TextButtonStyle}" Grid.Column="1"  FontSize="18" Text="{Binding LocalizationResourceManager[Finish],Mode=OneWay}" FontColor="Orange"  VerticalOptions="Center" HorizontalOptions="End"/>
+            <Entry Placeholder="{Binding LocalizationResourceManager[WorkoutName],Mode=OneWay}" Grid.ColumnSpan="2" TextColor="White" Margin="10" HorizontalOptions="Center" Text="{Binding WorkoutName}" Grid.Row="1" VerticalOptions="Center" FontSize="20" WidthRequest="200" ></Entry>
         </Grid>
-        <Picker Title="Select Exercise"
+        <Frame Padding="2" BackgroundColor="Gray">
+            <Picker Title="{Binding LocalizationResourceManager[SelectExcercise],Mode=OneWay}" Margin="20,0,0,0"
                 ItemsSource="{Binding AvailableExercises}"
-                SelectedItem="{Binding SelectedExercise}" />
-
-        <Button Text="Add Exercise"
-                Command="{Binding AddExerciseCommand}" />
-
+                SelectedItem="{Binding SelectedExercise}" TextColor="White"  BackgroundColor="Transparent" FontAttributes="Bold" >
+               
+            </Picker>
+        </Frame>
+        <mdc:Button Text="{Binding LocalizationResourceManager[AddExercise],Mode=OneWay}"
+                Command="{Binding AddExerciseCommand}" FontColor="Orange" WidthRequest="250" FontSize="22" FontWeight="Bold"/>
         <CollectionView ItemsSource="{Binding Exercises}">
             <CollectionView.ItemTemplate>
                 <DataTemplate>
-                    <StackLayout>
+                    <StackLayout Style="{StaticResource ContentStackLayoutStyle}">
                         <Label Text="{Binding Name}"
                                FontAttributes="Bold"
-                               TextColor="Black" />
-
+                               TextColor="White" Margin="5" HorizontalOptions="Center" FontSize="19"/>
+    
                         <CollectionView ItemsSource="{Binding Sets}">
                             <CollectionView.ItemTemplate>
                                 <DataTemplate>
-                                    <StackLayout Orientation="Horizontal">
-                                        <Label Text="Reps:" />
-                                        <Entry Text="{Binding Reps, Mode=TwoWay}"
+                                    <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand" Margin="5">
+                                        <Label Text="Reps:" TextColor="White" VerticalOptions="Center" Margin="10"/>
+                                        <Frame Padding="2" BackgroundColor="Transparent">
+                                            
+                                        <Entry Text="{Binding Reps, Mode=TwoWay}" 
+                                               WidthRequest="50"
+                                               Keyboard="Numeric" TextColor="White" Background="Transparent"/>
+                                        </Frame>
+                                        <Label Text="Weight:" TextColor="White" VerticalOptions="Center" Margin="10"/>
+                                        <Frame Padding="2" BackgroundColor="Transparent">
+                                        <Entry Text="{Binding Weight, Mode=TwoWay}" TextColor="White"
                                                WidthRequest="50"
                                                Keyboard="Numeric" />
-                                        <Label Text="Weight:" />
-                                        <Entry Text="{Binding Weight, Mode=TwoWay}"
-                                               WidthRequest="50"
-                                               Keyboard="Numeric" />
+                                        </Frame>
+                                        <Label Text="kg" TextColor="White" VerticalOptions="Center" Margin="10"/>
                                     </StackLayout>
                                 </DataTemplate>
                             </CollectionView.ItemTemplate>
                         </CollectionView>
 
-                        <Button Text="Add Set"
+                        <mdc:Button Text="Add set" FontColor="Orange"
                                 Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:WorkoutViewModel}}, Path=AddSetCommand}"
                                 CommandParameter="{Binding .}" />
                     </StackLayout>

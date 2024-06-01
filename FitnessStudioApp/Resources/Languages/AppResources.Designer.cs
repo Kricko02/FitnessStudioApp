@@ -214,7 +214,7 @@ namespace FitnessStudioApp.Resources.Languages {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Reps.
+        ///   Looks up a localized string similar to Reps:.
         /// </summary>
         internal static string Reps {
             get {
@@ -286,7 +286,7 @@ namespace FitnessStudioApp.Resources.Languages {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Weight.
+        ///   Looks up a localized string similar to Weight:.
         /// </summary>
         internal static string WeightWorkout {
             get {
@@ -297,9 +297,9 @@ namespace FitnessStudioApp.Resources.Languages {
         /// <summary>
         ///   Looks up a localized string similar to Name of workout.
         /// </summary>
-        internal static string Workout_name {
+        internal static string WorkoutName {
             get {
-                return ResourceManager.GetString("Workout name", resourceCulture);
+                return ResourceManager.GetString("WorkoutName", resourceCulture);
             }
         }
         
