@@ -22,7 +22,7 @@ namespace FitnessStudioApp.ViewModels
         private string _email = "test123@gmail.com";
         private string _token;
         public List<WorkoutResponse> userWorkouts;
-        private int totalWeight = 1234;
+        private double totalWeight = 0;
 
         public string Username
         {
@@ -37,14 +37,14 @@ namespace FitnessStudioApp.ViewModels
         public List<WorkoutResponse> UserWorkouts
         {
             get => userWorkouts;
-            set { userWorkouts = value; OnPropertyChanged(); }
+            set { userWorkouts = value;CalculateTotalWeight(); OnPropertyChanged(); }
         }
         public string Token
         {
             get => _token;
             set { _token = value; OnPropertyChanged(); }
         }
-        public int TotalWeight
+        public double TotalWeight
         {
             get => totalWeight;
             set { totalWeight = value; OnPropertyChanged(); }
@@ -86,7 +86,21 @@ namespace FitnessStudioApp.ViewModels
                 await Application.Current.MainPage.DisplayAlert("Error", ex.Message, "OK");
             }
         }
+        void CalculateTotalWeight()
+        {
+            TotalWeight = 0;
+            foreach (var item in userWorkouts)
+            {
+                foreach (var exercise in item.exercises)
+                {
+                    foreach (var set in exercise.sets)
+                    {
+                        TotalWeight += (set.weight * set.reps);
+                    }
+                }
+            }
 
+        }
         public event PropertyChangedEventHandler PropertyChanged;
         protected void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
