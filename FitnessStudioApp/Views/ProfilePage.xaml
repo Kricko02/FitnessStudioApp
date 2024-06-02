@@ -107,8 +107,9 @@ Padding="8,8">
                                                         <Label Text="{Binding exercise.name}" Style="{StaticResource SubTitleLabelStyle}" Margin="5,5,5,0"/>
                                                         <StackLayout Orientation="Horizontal"  Style="{StaticResource ContentStackLayoutStyle}">
                                                             <!-- Tale dva ne delata binding nevem zaka.... -->
-                                                            <Label Text="{Binding LocalizationResourceManager[Repetitions],Mode=OneWay}" Style="{StaticResource ContentLabelStyle}" HorizontalOptions="StartAndExpand"/>
-                                                            <Label Text="{Binding LocalizationResourceManager[Weight],Mode=OneWay}" Style="{StaticResource ContentLabelStyle}" HorizontalOptions="Center"/>
+                                                            <!--{Binding LocalizationResourceManager[Weight],Mode=Default }-->
+                                                            <Label Text="Repetitions" Style="{StaticResource ContentLabelStyle}" HorizontalOptions="StartAndExpand"/>
+                                                            <Label Text="Weight(kg)" Style="{StaticResource ContentLabelStyle}" HorizontalOptions="Center"/>
                                                         </StackLayout>
                                                         <ListView ItemsSource="{Binding sets}"
                                                       BackgroundColor="Transparent"

@@ -117,6 +117,12 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="AddExercise" xml:space="preserve">
+    <value>Add exercise</value>
+  </data>
+  <data name="AddSet" xml:space="preserve">
+    <value>Add set</value>
+  </data>
   <data name="CreateAcount" xml:space="preserve">
     <value>Create acount</value>
   </data>
@@ -162,6 +168,12 @@
   <data name="Repetitions" xml:space="preserve">
     <value>Repetitions</value>
   </data>
+  <data name="Reps" xml:space="preserve">
+    <value>Reps:</value>
+  </data>
+  <data name="SelectExcercise" xml:space="preserve">
+    <value>Select exercise</value>
+  </data>
   <data name="SignIn" xml:space="preserve">
     <value>Sign in</value>
   </data>
@@ -179,6 +191,12 @@
   </data>
   <data name="Weight" xml:space="preserve">
     <value>Weight(kg)</value>
+  </data>
+  <data name="WeightWorkout" xml:space="preserve">
+    <value>Weight:</value>
+  </data>
+  <data name="WorkoutName" xml:space="preserve">
+    <value>Name of workout</value>
   </data>
   <data name="Workouts" xml:space="preserve">
     <value>Workouts</value>
