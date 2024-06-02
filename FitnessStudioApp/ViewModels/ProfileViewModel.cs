@@ -19,7 +19,7 @@ namespace FitnessStudioApp.ViewModels
 
         private readonly IApiService _apiService;
         private string _username;
-        private string _email = "tilen@gmail.com";
+        private string _email = "test123@gmail.com";
         private string _token;
         public List<WorkoutResponse> userWorkouts;
         private int totalWeight = 1234;
