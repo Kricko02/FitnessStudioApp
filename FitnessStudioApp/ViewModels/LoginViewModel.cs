@@ -62,6 +62,7 @@ namespace FitnessStudioApp.ViewModels
                 Token = response.Token;
                 await SecureStorage.SetAsync("jwt_token", Token);
                 await SecureStorage.SetAsync("username", response.Username);
+                await SecureStorage.SetAsync("email", response.Email);
                 Application.Current.MainPage = new AppShell();
             }
             catch (Exception ex)

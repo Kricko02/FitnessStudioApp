@@ -19,7 +19,7 @@ namespace FitnessStudioApp.ViewModels
 
         private readonly IApiService _apiService;
         private string _username;
-        private string _email = "test123@gmail.com";
+        private string _email;
         private string _token;
         public List<WorkoutResponse> userWorkouts;
         private double totalWeight = 0;
@@ -65,6 +65,7 @@ namespace FitnessStudioApp.ViewModels
         {
             Username = await SecureStorage.GetAsync("username");
             Token = await SecureStorage.GetAsync("jwt_token");
+            Email = await SecureStorage.GetAsync("email");
         }
 
         public async Task GetUserWorkoutsAsync()
